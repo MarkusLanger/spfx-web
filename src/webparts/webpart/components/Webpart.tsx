@@ -2,9 +2,13 @@ import * as React from 'react';
 import styles from './Webpart.module.scss';
 import { IWebpartProps } from './IWebpartProps';
 import { escape } from '@microsoft/sp-lodash-subset';
+import { LibraryComponentLibrary } from "spfx-lib";
 
 export default class Webpart extends React.Component<IWebpartProps, {}> {
   public render(): React.ReactElement<IWebpartProps> {
+    const lib = new LibraryComponentLibrary();
+    const name = lib.name();
+    console.log('### name', name);
     return (
       <div className={ styles.webpart }>
         <div className={ styles.container }>
@@ -14,7 +18,7 @@ export default class Webpart extends React.Component<IWebpartProps, {}> {
               <p className={ styles.subTitle }>Customize SharePoint experiences using Web Parts.</p>
               <p className={ styles.description }>{escape(this.props.description)}</p>
               <a href="https://aka.ms/spfx" className={ styles.button }>
-                <span className={ styles.label }>Learn more</span>
+                <span className={ styles.label }>Learn more: {name}</span>
               </a>
             </div>
           </div>
